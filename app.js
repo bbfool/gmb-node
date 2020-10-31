@@ -24,3 +24,5 @@ var server = http.createServer(function(req, res) {
 });
 server.listen();
 
+console.log('server running' + server.port);
+
