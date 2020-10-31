@@ -3,21 +3,23 @@ var express = require('express');
 var app = express();
 
 // on the request to root (localhost:3000/)
+/*
 app.get('/', function (req, res) {
     console.log('received request');
     res.send('<b>My</b> first express http server');
 });
+*/
 
-app.get('/api2', function (req, res) {
+app.get('/api', function (req, res) {
     console.log('received request /api2');
     res.send('<b>My</b> first express http server');
 });
-
+/*
 app.get('api2', function (req, res) {
     console.log('received request api2');
     res.send('<b>My</b> first express http server');
 });
-
+*/
 app.listen('passenger');
 
 console.log('running with key' + process.env.KEY);
