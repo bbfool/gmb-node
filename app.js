@@ -8,6 +8,10 @@ app.get('/', function (req, res) {
 });
 
 app.listen('passenger');
+
+console.log('running with key' + process.env.KEY);
+console.log('Example app listening on port.');
+
 /*
 app.listen(function () {
     console.log('running with key' + process.env.KEY);
@@ -25,10 +29,11 @@ var server = http.createServer(function(req, res) {
     res.end(response);
 });
 server.listen();
-*/
+
 
 console.log('server running' + server.address());
 console.log(server.address());
 console.log(server.address().address);
 console.log(server.address().port);
 console.log(server);
+*/
