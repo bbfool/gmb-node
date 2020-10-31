@@ -9,12 +9,12 @@ app.get('/', function (req, res) {
 });
 
 app.get('/api2', function (req, res) {
-    console.log('received request');
+    console.log('received request /api2');
     res.send('<b>My</b> first express http server');
 });
 
 app.get('api2', function (req, res) {
-    console.log('received request');
+    console.log('received request api2');
     res.send('<b>My</b> first express http server');
 });
 
