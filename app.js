@@ -6,21 +6,21 @@ var app = express();
 app.get('/', function (req, res) {
     res.send('<b>My</b> first express http server');
 });
-
+/*
 app.listen(function () {
     console.log('running with key' + process.env.KEY);
     console.log('Example app listening on port.');
 });
+*/
 
-/*
 var server = http.createServer(function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     
     var message = 'Hosted in GitHub!  It works!',
         version = 'NodeJS ' + process.versions.node ,
-        intentions = 'this is what we are going to do here ' + process.env.PORT,
+        intentions = 'this is what we are going to do here ' + process.env.PORT + '\n asdf ' + process.env.KEY,
         response = [message, intentions, version].join('\n');
     res.end(response);
 });
 server.listen();
-*/
+
