@@ -24,7 +24,8 @@ var server = http.createServer(function(req, res) {
 });
 server.listen();
 
-console.log('server running' + server.port);
+console.log('server running' + server.address());
 console.log(server.address());
 console.log(server.address().address);
 console.log(server.address().port);
+console.log(server);
