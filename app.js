@@ -18,7 +18,7 @@ var server = http.createServer(function(req, res) {
     
     var message = 'Hosted in GitHub!  It works!',
         version = 'NodeJS ' + process.versions.node ,
-        intentions = 'this is what we are going to do here ' + process.env.PORT + '\n asdf ' + process.env.KEY,
+        intentions = 'this is what we are going to do here ' + process.env.NODE_ENV + '\n asdf ' + process.env.KEY,
         response = [message, intentions, version].join('\n');
     res.end(response);
 });
