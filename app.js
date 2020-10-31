@@ -6,12 +6,14 @@ var app = express();
 app.get('/', function (req, res) {
     res.send('<b>My</b> first express http server');
 });
+
+app.listen('passenger');
 /*
 app.listen(function () {
     console.log('running with key' + process.env.KEY);
     console.log('Example app listening on port.');
 });
-*/
+
 
 var server = http.createServer(function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
@@ -23,6 +25,7 @@ var server = http.createServer(function(req, res) {
     res.end(response);
 });
 server.listen();
+*/
 
 console.log('server running' + server.address());
 console.log(server.address());
