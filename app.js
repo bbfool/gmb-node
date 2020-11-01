@@ -1,4 +1,5 @@
-var http = require('http');
+//var http = require('http');
+const axios = require('axios');
 var express = require('express');
 var app = express();
 
@@ -10,9 +11,28 @@ app.get('/', function (req, res) {
 });
 */
 
+async function getUser(stateAbbrv) {
+    try {
+      const response = await axios.get('https://api.weather.gov/alerts/active?area=' + stateAbbrv);
+      //console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
 app.get('/api', function (req, res) {
     console.log('received request /api2');
     res.send('<b>My</b> first express http server');
+});
+
+app.get('/alerts', function(req, res)
+{
+    console.log('request sent to webservice, awaiting response data');
+    getUser("ID").then(function(response) {
+        res.send(response);
+        console.log('response received and sent');
+    });
 });
 /*
 app.get('api2', function (req, res) {
@@ -20,7 +40,13 @@ app.get('api2', function (req, res) {
     res.send('<b>My</b> first express http server');
 });
 */
-app.listen('passenger');
+if(process.env.NOT_PASSENGER)
+{
+    app.listen(3000);
+}
+else{
+    app.listen('passenger');
+}
 
 console.log('running with key' + process.env.KEY);
 console.log('Example app listening on port.');
