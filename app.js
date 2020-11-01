@@ -26,7 +26,7 @@ app.get('/api', function (req, res) {
     res.send('<b>My</b> first express http server');
 });
 
-app.get('/alerts', function(req, res)
+app.get('/api/alerts', function(req, res)
 {
     console.log('request sent to webservice, awaiting response data');
     getUser("ID").then(function(response) {
