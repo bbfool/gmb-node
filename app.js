@@ -11,11 +11,23 @@ app.get('/', function (req, res) {
 });
 */
 
-async function getUser(stateAbbrv) {
+async function getWeatherAsync(zipCode) {
     try {
-      const response = await axios.get('https://api.weather.gov/alerts/active?area=' + stateAbbrv);
+        weatherUrl = 'https://api.weather.gov/gridpoints/BOI/132,84/forecast';
+      console.log('received request for zip: ' + zipCode)
+        const response = await axios.get(weatherUrl);
       //console.log(response.data);
       return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+function getWeather(zipCode) {
+    try {
+        weatherUrl = 'https://api.weather.gov/gridpoints/BOI/132,84/forecast';
+      console.log('received request for zip: ' + zipCode)
+      return axios.get(weatherUrl)
     } catch (error) {
       console.error(error);
     }
@@ -26,13 +38,38 @@ app.get('/api', function (req, res) {
     res.send('<b>My</b> first express http server');
 });
 
-app.get('/api/alerts', function(req, res)
+app.get('/api/forecast-async', function(req, res)
 {
-    console.log('request sent to webservice, awaiting response data');
-    getUser("ID").then(function(response) {
-        res.send(response);
-        console.log('response received and sent');
+    let zipCode = req.query.zipCode;
+    if(!zipCode)
+    {
+        throw new Error('Zip code not provided');
+        console.error('no zip code provided, cannot proceed!');
+    }
+    else{
+        console.log('request sent to webservice, awaiting response data');
+        getWeatherAsync(zipCode).then(function(response) {
+            res.send(response);
+            console.log('response received and sent');
     });
+    }
+});
+
+app.get('/api/forecast', function(req, res)
+{
+    let zipCode = req.query.zipCode;
+    if(!zipCode)
+    {
+        throw new Error('Zip code not provided');
+        console.error('no zip code provided, cannot proceed!');
+    }
+    else{
+        console.log('request sent to webservice, awaiting response data');
+        getWeather(zipCode).then(function(response) {
+            res.send(response.data);
+            console.log('response received and sent');
+        });
+    }
 });
 /*
 app.get('api2', function (req, res) {
