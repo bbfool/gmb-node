@@ -1,8 +1,7 @@
-import express from 'express';
-import { getWeatherForecastByZip } from './weatherService.js'
+const express = require('express')
+const weatherService = require('./weatherService.js')
 
 var app = express();
-
 
 app.get('/api', function (req, res) {
     console.log('received request /api2');
@@ -19,7 +18,7 @@ app.get('/api/forecast', function(req, res)
     else{
         console.log('request sent to webservice, awaiting response data');
 
-        getWeatherForecastByZip(zipCode)
+        weatherService.getWeatherForecastByZip(zipCode)
         .then(forecast => {
             res.send(forecast.data)
         })

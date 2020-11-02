@@ -1,4 +1,4 @@
-import axios from 'axios'
+const axios = require('axios')
 
 function getLatLongByZip(zipCode) {
     const zipLookupUrl = 'https://public.opendatasoft.com/api/records/1.0/search'
@@ -31,7 +31,7 @@ function getWeatherByZone(zoneData) {
     }
   }
 
-  export function getWeatherForecastByZip(zipCode)
+  exports.getWeatherForecastByZip = function(zipCode)
   {
     return getLatLongByZip(zipCode)
     .then(coordinates => {
