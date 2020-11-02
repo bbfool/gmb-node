@@ -1,35 +1,13 @@
 const express = require('express')
-const weatherService = require('./weatherService.js')
-
-var app = express();
+const app = express();
 
 app.get('/api', function (req, res) {
     console.log('received request /api2');
     res.send('<b>My</b> first express http server');
 });
 
-app.get('/api/forecast', function(req, res)
-{
-    let zipCode = req.query.zipCode;
-    if(!zipCode)
-    {
-        throw new Error('Zip code not provided');
-    }
-    else{
-        console.log('request sent to webservice, awaiting response data');
-
-        weatherService.getWeatherForecastByZip(zipCode)
-        .then(forecast => {
-            res.send(forecast.data)
-        })
-        .catch(error => {
-            console.error(error);
-            res.status(500).send('unable to retrieve forcast data, try again later.');
-        }
-            
-            );
-    }
-});
+const weatherRoutes = require('./routes/weatherRoutes');
+app.use('/api/weather', weatherRoutes);
 
 if(process.env.NOT_PASSENGER)
 {
@@ -39,5 +17,4 @@ else{
     app.listen('passenger');
 }
 
-console.log('running with key' + process.env.KEY);
-console.log('Example app listening on port.');
+console.log(`running with key ${process.env.KEY}`);

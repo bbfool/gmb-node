@@ -44,8 +44,4 @@ function getWeatherByZone(zoneData) {
         throw new Error(`error with weather retrieval ${badResult}`);
     }
         );
-    /*.then(forecast => {
-        return forecast;
-    }*/
-            //);
   }
