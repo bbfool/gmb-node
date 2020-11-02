@@ -2,7 +2,7 @@
   "name": "gmb-reviews-weather",
   "type": "module",
   "dependencies": {
-    "express": "4.13.4",
-    "axios": "0.20.0"
+    "axios": "0.20.0",
+    "express": "^4.17.1"
   }
 }
