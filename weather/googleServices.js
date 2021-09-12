@@ -111,8 +111,17 @@ exports.checkAuthToken = function () {
         }
         )
         .then(reviewsInfo => {
-            return reviewsInfo.data;
-        });
+            return reviewsInfo.data.reviews;
+            var firstReview = reviewsInfo.data.reviews[0];
+            //pull some data on this review, so check for more details
+            var firstReviewUrl = `https://mybusiness.googleapis.com/v4/${firstReview.name}`
+            return authenticatedAxiosGet(firstReviewUrl);
+            //return reviewsInfo.data;
+        })
+        .then(reviewData => 
+            {
+                return reviewData;//.data;
+            });
 
     var url = "https://mybusiness.googleapis.com/v4/accounts";
 
